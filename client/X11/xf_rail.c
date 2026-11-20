@@ -1482,12 +1482,13 @@ static UINT xf_rail_server_local_move_size(RailClientContext* context,
 			break;
 	}
 
-	/* Except for RAIL_WMSZ_MOVE the position is in screen coordinates */
+	/* Except for RAIL_WMSZ_MOVE the position is in server desktop coordinates,
+	 * the same space xf_rail_end_local_move() translates back from */
 	if (localMoveSize->moveSizeType != RAIL_WMSZ_MOVE)
 	{
 		INT32 ox = 0;
 		INT32 oy = 0;
-		xf_rail_get_screen_origin(xfc->common.context.settings, &ox, &oy);
+		xf_rail_get_desktop_origin(xfc->common.context.settings, &ox, &oy);
 		x += ox;
 		y += oy;
 	}
